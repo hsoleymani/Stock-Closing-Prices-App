@@ -18,7 +18,7 @@ symbol = st.sidebar.text_input("Select ticker (e.g., AAPL)", 'AAPL')
 api_key = 'JWX4DUFEIKYYB7KQ'
 
 ts = TimeSeries (key=api_key, output_format = "pandas")
-data_daily, meta_data = ts.get_daily_adjusted(symbol=str(symbol), outputsize ='full')
+data_daily, meta_data = ts.get_daily(symbol=str(symbol), outputsize ='full')
 
 data_daily.reset_index(level=0, inplace=True)
 
@@ -37,8 +37,11 @@ month_list = month.tolist()
 month_list.sort()
 month_list = [str(x) for x in month_list]   # convert all the elements in string
 
-year = st.sidebar.selectbox('Select year',(years_list))
-month = st.sidebar.selectbox('Select month',(month_list))
+default_ix = years_list.index('2021') # set the default index to 2021
+year = st.sidebar.selectbox('Select year',(years_list),index=default_ix)
+
+default_ix = month_list.index('12')     # set the default month to 12
+month = st.sidebar.selectbox('Select month',(month_list),index=default_ix)
 
 # Manipulate, plot and vsualize
 sel_data = data_daily[(data_daily.year == int(year)) & (data_daily.month == int(month))]
