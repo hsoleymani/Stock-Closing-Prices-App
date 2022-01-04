@@ -8,6 +8,7 @@ st.set_page_config(page_title="Ex-stream-ly Cool App", page_icon="🧊", layout=
 
 st.subheader('TDI Milestone app day 10')
 st.subheader('An interactive chart of stock closing prices using Streamlit and Plotly.')
+st.markdown('There is a 5 calls per minute API limit') 
 
 st.sidebar.title('Ticker (e.g. AAPL):')
 # add a panel to enter ticker as string, this will be use later in the Api
